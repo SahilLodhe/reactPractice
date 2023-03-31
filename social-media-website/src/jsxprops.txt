@@ -1,0 +1,92 @@
+always create a separate file for the objects prototype
+for example : 
+// write this keeping the first letter capital
+export const User = (props) => {
+    return (
+      <div>{props.name} {props.age}</div>
+  
+    )
+  }
+
+  remember to export it
+
+  and then remember to import it in the app.js
+
+  given data in the app.js
+  const users = [
+    {name:"sahil",age:21},
+    {name:"aditya",age:21},
+    {name:"harsh",age:21},
+  ]
+
+  to access and print it out : 
+  return (
+    <div className="App">
+      {users.map((user,key) => {
+        return <User name={user.name} age={user.age} />;
+      })}
+    </div>
+  )
+
+
+  2. States
+    the states allow you to update the vatiable based on the current state, by simply updating the value of age will not store the updated value for the next loop
+
+  const[age,setAge] = useState(0);
+  const increaseAge = () => {
+    setAge(age + 1)
+  }
+  const decreaseAge = () => {
+    setAge(age - 1)
+  }
+  return (
+    <div className="App">
+      {age}
+      <button onClick={increaseAge}>Increase Age</button>
+      <button onClick={decreaseAge}>Decrease Age</button>
+    </div>
+  )
+
+  3. handling the current text which the user is typing
+
+    const [inputValue,setInputValue] = useState("");
+  const handleInputChange = (event) => {
+    console.log(event.target.value);
+  }
+  return (
+    <div className="App">
+      <input type="text"  onChange={handleInputChange}/> // onChange is an event when the current string is changed
+      {inputValue}
+    </div>
+  )
+
+  4. to show and display a string in red
+
+    return (
+    <div className="App">
+      <button onClick={() => {
+        setShowText(!showText);
+      }}>
+        Show/Hide
+      </button>
+      {showText && <h1>hi my name is sahil</h1>}
+    </div>
+  )  return (
+    <div className="App">
+      <button onClick={() => {
+        setShowText(!showText);
+      }}>
+        Show/Hide
+      </button>
+      {showText && <h1>hi my name is sahil</h1>}
+    </div>
+  )  return (
+    <div className="App">
+      <button onClick={() => {
+        setShowText(!showText);
+      }}>
+        Show/Hide
+      </button>
+      {showText && <h1 style={{color : "red" }}> hi my name is sahil</h1>}
+    </div>
+  )
