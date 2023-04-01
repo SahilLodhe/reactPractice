@@ -10,13 +10,18 @@ function App() {
     setnewTask(event.target.value)
   }
   const addTask = () => {
-    const newTodoList = [...todoList,newTask]; // this means to add the "newTask" to the end of the todoList
-    setTodoList(newTodoList);
+    const task = {
+      id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
+      taskName: newTask
+    };
+    setTodoList([...todoList,task])
+    // const newTodoList = [...todoList,newTask]; // this means to add the "newTask" to the end of the todoList
+    // setTodoList(newTodoList);
   };
-  const deleteTask = (task) => {
-    const newArray = (taskName) => {
-      
-    }
+  const deleteTask = (id) => {
+    // const newTodoList = todoList.filter((task) => {task !== taskName})
+    // setTodoList(todoList.filter((task) => {task !== taskName}));
+    setTodoList(todoList.filter((task) => task.id !== id))
   }
   return(
     <div className='App'>
@@ -25,11 +30,12 @@ function App() {
         <button onClick={addTask}>Add Task</button>
       </div>
       <div className='list'>
-        {newTask}
+        
         {todoList.map((task) => {
           return <div>
-            <h1>{task}</h1>
-            <button onClick={() => deleteTask(task)}> X </button>  /*general and correct way of callng a onclick function with a parameter is to return it with an unnamed function*/
+            {newTask}
+            <h1>{task.taskName}</h1>
+            <button onClick={() => deleteTask(task.id)}> X </button>  /*general and correct way of callng a onclick function with a parameter is to return it with an unnamed function*/
           </div>
         })}
         
